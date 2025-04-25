@@ -66,7 +66,7 @@ if uploaded_file is not None:
         st.subheader(f"📊 Výsledky predikce - {location}:")
         st.dataframe(df_transformed[["Datum", "Teplota_venkovni", "Predikce_tepla"]], use_container_width=True)
 
-        csv = df_display.to_csv(index=False).encode('utf-8')
+        csv = df_display.to_csv(index=False, sep = ";").encode('utf-8')
         st.download_button(
             label="📥 Stáhnout výsledky jako CSV",
             data=csv,
