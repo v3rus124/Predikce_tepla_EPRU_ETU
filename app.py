@@ -4,6 +4,7 @@ import xgboost as xgb
 import joblib
 import matplotlib.pyplot as plt
 import numpy as np
+import io
 
 # Načtení trénovaného modelu
 def load_model(location):
@@ -71,6 +72,21 @@ if uploaded_file is not None:
             file_name=f'predikce_{location}.csv',
             mime='text/csv',
         )
+
+        output = io.BytesIO()
+        with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+            df_display.to_excel(writer, index=False, sheet_name='Predikce')
+            writer.save()
+        processed_data = output.getvalue()
+        
+        # Add Streamlit download button
+        st.download_button(
+            label="📥 Stáhnout výsledky jako Excel",
+            data=processed_data,
+            file_name=f'predikce_{location}.xlsx',
+            mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        )
+
         
         predikce = df_transformed["Predikce_tepla"].sum()
         st.write(f"### Predikované množství tepla: {predikce:.2f} GJ/den")
