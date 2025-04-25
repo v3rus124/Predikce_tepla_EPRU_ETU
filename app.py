@@ -60,7 +60,7 @@ if uploaded_file is not None:
         df_transformed["Predikce tepla"] = predictions
 
         # Show output
-        st.subheader("📊 Výsledky predikce:")
+        st.subheader(f"📊 Výsledky predikce - {location}:".format(location)
         st.dataframe(df_transformed[["Datum", "Teplota_venkovní", "Predikce tepla"]])
         
         predikce = df_transformed["Predikce tepla"].sum()
