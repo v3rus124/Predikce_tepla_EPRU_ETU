@@ -71,6 +71,6 @@ if uploaded_file is not None:
         ax.set_ylabel("Teplo (GJ/h)")
         ax.legend()
         st.pyplot(fig)
-# Zobrazení výsledku
-predikce = df_transformed["Predikce tepla"].sum()
-st.write(f"### Predikované množství tepla: {predikce:.2f} GJ/den")
+    # Zobrazení výsledku
+    predikce = df_transformed["Predikce tepla"].sum()
+    st.write(f"### Predikované množství tepla: {predikce:.2f} GJ/den")
