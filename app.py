@@ -67,7 +67,7 @@ if uploaded_file is not None:
         st.write(f"### Predikované množství tepla: {predikce:.2f} GJ/den")
         # Plot
         fig, ax = plt.subplots(figsize=(15,3))
-        ax.plot(df_transformed["hodina"], df_transformed["Predikce tepla"], marker="o", label="Predikce")
+        ax.plot(df_transformed["hodina"], df_transformed["Predikce tepla"], marker="o", color = "red", label="Predikovaná dodávka tepla")
         ax.set_title(f"Predikce tepla — {location}")
         ax.set_xlabel("Hodina")
         ax.set_ylabel("Teplo (GJ/h)")
