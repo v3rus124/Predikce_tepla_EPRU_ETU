@@ -66,8 +66,8 @@ if uploaded_file is not None:
         df_display = df_display[["Datum", "Teplota_venkovni", "Predikce_tepla"]]
         # Show output
         st.subheader(f"📊 Výsledky predikce - {location}:")
-        df_transformed["Predikce_tepla_resample"] = df_transformed["Predikce_tepla"].applymap(lambda x: str(round(x, 2)).replace('.', ','))
-        st.dataframe(df_transformed[["Datum", "Teplota_venkovni", "Predikce_tepla_resample"]], use_container_width=True)
+        df_transformed["Predikce_tepla"] = df_transformed["Predikce_tepla"].applymap(lambda x: str(round(x, 2)).replace('.', ','))
+        st.dataframe(df_transformed[["Datum", "Teplota_venkovni", "Predikce_tepla"]], use_container_width=True)
 
         csv = df_display.to_csv(index=False, sep = ";").encode('utf-8')
         st.download_button(
