@@ -13,7 +13,7 @@ def load_model(location):
         return joblib.load("model_EPRU_novy_model_3.pkl")
 
 def transform_features(df, location):
-    df["Teplota_venkovní"] = df["Teplota venkovní"].astype(str).str.replace(',', '.').astype(float)
+    df["Teplota_venkovni"] = df["Teplota venkovní"].astype(str).str.replace(',', '.').astype(float)
     df["Datum"] = pd.to_datetime(df["Datum"], format="%d.%m.%y %H:%M")
     df["hodina"] = df["Datum"].dt.hour
     df["den_v_tydnu"] = df["Datum"].dt.dayofweek
@@ -46,7 +46,7 @@ uploaded_file = st.file_uploader("📤 Nahrajte Excel soubor (.xlsx)", type=["xl
 
 if uploaded_file is not None:
     df = pd.read_excel(uploaded_file)
-    df["Teplota_venkovní"] = df["Teplota venkovní"].astype(str).str.replace(',', '.').astype(float)
+    df["Teplota_venkovni"] = df["Teplota venkovní"].astype(str).str.replace(',', '.').astype(float)
     df["Datum"] = pd.to_datetime(df["Datum"], format="%d.%m.%y %H:%M")
     # Kontrola, zda soubor obsahuje správná data
     if "Teplota venkovní" not in df.columns or "Datum" not in df.columns:
@@ -59,10 +59,10 @@ if uploaded_file is not None:
         predictions = model.predict(X)
         df_transformed["Predikce_tepla"] = predictions
         
-        df_display = df_transformed[["Datum", "Teplota_venkovní", "Predikce_tepla"]]
+        df_display = df_transformed[["Datum", "Teplota_venkovni", "Predikce_tepla"]]
         # Show output
         st.subheader(f"📊 Výsledky predikce - {location}:")
-        st.dataframe(df_transformed[["Datum", "Teplota_venkovní", "Predikce_tepla"]], use_container_width=True)
+        st.dataframe(df_transformed[["Datum", "Teplota_venkovni", "Predikce_tepla"]], use_container_width=True)
 
         csv = df_display.to_csv(index=False).encode('utf-8')
         st.download_button(
