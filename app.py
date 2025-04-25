@@ -63,6 +63,7 @@ if uploaded_file is not None:
         df_display = df_display[["Teplota_venkovni", "Predikce_tepla"]].copy()
         df_display = df_display.applymap(lambda x: str(round(x, 2)).replace('.', ','))
         df_display["Datum"] = df_transformed["Datum"]
+        df_display = df_display[["Datum", "Teplota_venkovni", "Predikce_tepla"]]
         # Show output
         st.subheader(f"📊 Výsledky predikce - {location}:")
         st.dataframe(df_transformed[["Datum", "Teplota_venkovni", "Predikce_tepla"]], use_container_width=True)
