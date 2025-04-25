@@ -4,7 +4,6 @@ import xgboost as xgb
 import joblib
 import matplotlib.pyplot as plt
 import numpy as np
-import io
 
 # Načtení trénovaného modelu
 def load_model(location):
