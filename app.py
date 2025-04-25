@@ -66,7 +66,7 @@ if uploaded_file is not None:
         predikce = df_transformed["Predikce tepla"].sum()
         st.write(f"### Predikované množství tepla: {predikce:.2f} GJ/den")
         # Plot
-        fig, ax = plt.subplots(figsize=(15,6))
+        fig, ax = plt.subplots(figsize=(15,3))
         ax.plot(df_transformed["hodina"], df_transformed["Predikce tepla"], marker="o", label="Predikce")
         ax.set_title(f"Predikce tepla — {location}")
         ax.set_xlabel("Hodina")
