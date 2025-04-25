@@ -57,17 +57,25 @@ if uploaded_file is not None:
         model = load_model(location)
         df_transformed, X = transform_features(df, location)
         predictions = model.predict(X)
-        df_transformed["Predikce tepla"] = predictions
+        df_transformed["Predikce_tepla"] = predictions
 
         # Show output
-        st.subheader(f"📊 Výsledky predikce - {location}:".format(location))
-        st.dataframe(df_transformed[["Datum", "Teplota_venkovní", "Predikce tepla"]])
+        st.subheader(f"📊 Výsledky predikce - {location}:")
+        st.dataframe(df_transformed[["Datum", "Teplota_venkovní", "Predikce_tepla"]], use_container_width=True)
+
+        csv = df_display.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            label="📥 Stáhnout výsledky jako CSV",
+            data=csv,
+            file_name=f'predikce_{location}.csv',
+            mime='text/csv',
+        )
         
-        predikce = df_transformed["Predikce tepla"].sum()
+        predikce = df_transformed["Predikce_tepla"].sum()
         st.write(f"### Predikované množství tepla: {predikce:.2f} GJ/den")
         # Plot
         fig, ax = plt.subplots(figsize=(15,3))
-        ax.plot(df_transformed["hodina"], df_transformed["Predikce tepla"], marker="o", color = "red", label="Predikovaná dodávka tepla")
+        ax.plot(df_transformed["hodina"], df_transformed["Predikce_tepla"], marker="o", color = "red", label="Predikovaná dodávka tepla")
         ax.set_title(f"Predikce tepla — {location}")
         ax.set_xlabel("Hodina")
         ax.set_ylabel("Teplo (GJ/h)")
