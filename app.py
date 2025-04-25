@@ -38,7 +38,7 @@ def transform_features(df, location):
 # Streamlit UI
 # ====================
 st.set_page_config(layout="wide")
-st.title("🔥 Predikce potřeby tepla — více lokalit")
+st.title(f"🔥 Predikce potřeby tepla — {location}")
 
 location = st.selectbox("Vyberte lokalitu", ["ETU", "EPRU"])
 
