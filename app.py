@@ -37,10 +37,10 @@ def transform_features(df, location):
 # ====================
 # Streamlit UI
 # ====================
+location = st.selectbox("Vyberte lokalitu", ["ETU", "EPRU"])
+
 st.set_page_config(layout="wide")
 st.title(f"🔥 Predikce potřeby tepla — {location}")
-
-location = st.selectbox("Vyberte lokalitu", ["ETU", "EPRU"])
 
 uploaded_file = st.file_uploader("📤 Nahrajte Excel soubor (.xlsx)", type=["xlsx"])
 
