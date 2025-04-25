@@ -24,7 +24,7 @@ def transform_features(df, location):
     df["month_cos"] = np.cos(2 * np.pi * df["mesic"] / 12)
     df["hour_sin"] = np.sin(2 * np.pi * df["hodina"] / 24)
     df["hour_cos"] = np.cos(2 * np.pi * df["hodina"] / 24)
-    df["sezonost_mesic"] = df["mesic"] * df["Teplota_venkovní"]
+    df["sezonost_mesic"] = df["mesic"] * df["Teplota_venkovni"]
 
     if location == "ETU":
         features = ['Teplota venkovní', 'je_leto', 'month_sin', 'month_cos', 'hour_sin', 'hour_cos', 'sezonost_mesic']
