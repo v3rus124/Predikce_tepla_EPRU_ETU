@@ -62,7 +62,9 @@ if uploaded_file is not None:
         # Show output
         st.subheader("📊 Výsledky predikce:")
         st.dataframe(df_transformed[["Datum", "Teplota_venkovní", "Predikce tepla"]])
-
+        
+        predikce = df_transformed["Predikce tepla"].sum()
+        st.write(f"### Predikované množství tepla: {predikce:.2f} GJ/den")
         # Plot
         fig, ax = plt.subplots()
         ax.plot(df_transformed["hodina"], df_transformed["Predikce tepla"], marker="o", label="Predikce")
@@ -72,5 +74,4 @@ if uploaded_file is not None:
         ax.legend()
         st.pyplot(fig)
     # Zobrazení výsledku
-    predikce = df_transformed["Predikce tepla"].sum()
-    st.write(f"### Predikované množství tepla: {predikce:.2f} GJ/den")
+    
