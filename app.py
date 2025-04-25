@@ -77,9 +77,9 @@ if uploaded_file is not None:
         # Plot
         fig, ax = plt.subplots(figsize=(15,3))
         ax.plot(df_transformed["hodina"], df_transformed["Predikce_tepla"], marker="o", color = "red", label="Predikovaná dodávka tepla")
-        ax.set_title(f"Predikce tepla — {location}")
-        ax.set_xlabel("Hodina")
-        ax.set_ylabel("Teplo (GJ/h)")
+        ax.set_title(f"Množství predikované tepla — {location}")
+        ax.set_xlabel("čas [h]")
+        ax.set_ylabel("Množství tepla (GJ/h)")
         ax.legend()
         st.pyplot(fig)
     # Zobrazení výsledku
